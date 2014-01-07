@@ -5,7 +5,7 @@ package ru.zzzzzzerg.linden;
 import openfl.utils.JNI;
 import haxe.CallStack;
 
-class Flurry
+class FlurryImpl
 {
   public function new ()
   {
@@ -275,6 +275,86 @@ class Flurry
 
 }
 
+typedef Flurry = FlurryImpl;
 
+#else
+
+class FlurryFallback
+{
+  public function new ()
+  {
+  }
+
+  public function onStartSession(flurryKey : String)
+  {
+  }
+
+  public function onEndSession()
+  {
+  }
+
+  public function setVersionName(versionName : String)
+  {
+  }
+
+  public function setReportLocation(reportLocation : Bool)
+  {
+  }
+
+  public function setLogEnabled(logEnabled : Bool)
+  {
+  }
+
+  public function setLogLevel(logLevel : Int)
+  {
+  }
+
+  public function setContinueSessionMillis(millis : Int)
+  {
+  }
+
+  public function setLogEvents(logEvents : Bool)
+  {
+  }
+
+  public function setUseHttps(useHttps : Bool)
+  {
+  }
+
+  public function setCaptureUncaughtExceptions(isEnabled : Bool)
+  {
+  }
+
+  public function logEvent(eventId : String, ?params : Dynamic = null, ?timed : Bool = false)
+  {
+  }
+
+  public function endTimedEvent(eventId : String, ?params : Dynamic = null)
+  {
+  }
+
+  public function onError(errorId : String, message : String, errorClass : String)
+  {
+  }
+
+  public function onPageView()
+  {
+  }
+
+  public function setAge(age : Int)
+  {
+  }
+
+  public function setGender(gender : Int)
+  {
+  }
+
+  public function setUserId(userId : String)
+  {
+  }
+
+}
+
+typedef Flurry = FlurryFallback;
 
 #end
