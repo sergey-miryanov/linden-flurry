@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+
+  <meta title="LindenFlurrySamples" package="ru.zzzzzzerg.linden.flurry.samples" version="1.0.0" company="RockGate.ru" />
+  <app main="Main" path="Export" file="LindenFlurrySamples" />
+
+  <source path="Source" />
+
+  <haxelib name="openfl" />
+  <haxelib name="linden-flurry"/>
+
+  <android target-sdk-version="19" minimum-sdk-version="14" if="android" />
+
+  <assets path="Assets" rename="assets" exclude="openfl.svg" />
+  <icon path="Assets/openfl.svg" />
+
+  <certificate
+    path="t.keystore"
+    password="password"
+    alias="t_alias"
+    alias-password="password" if="android" />
+
+</project>
