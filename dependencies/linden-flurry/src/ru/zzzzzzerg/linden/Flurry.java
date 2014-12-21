@@ -96,7 +96,6 @@ public class Flurry extends Extension
    */
   public void onStop()
   {
-    stop();
   }
 
   public static void start(String flurryKey)
@@ -109,8 +108,10 @@ public class Flurry extends Extension
 
     Log.d(tag, "Starting LindenFlurry");
 
-    FlurryAgent.onStartSession(mainContext, flurryKey);
     FlurryAgent.setLogEvents(true);
+    FlurryAgent.init(mainContext, flurryKey);
+
+    FlurryAgent.onStartSession(mainContext);
 
     _started = true;
 
