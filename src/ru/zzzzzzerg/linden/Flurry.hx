@@ -15,6 +15,7 @@ class FlurryImpl
   public function onStartSession(flurryKey : String)
   {
     _onStartSession(flurryKey);
+    _setLogEnabled(true);
   }
 
   public function onEndSession()
@@ -283,6 +284,7 @@ class FlurryFallback
 {
   public function new ()
   {
+    setLogEnabled(true);
   }
 
   public function onStartSession(flurryKey : String)
