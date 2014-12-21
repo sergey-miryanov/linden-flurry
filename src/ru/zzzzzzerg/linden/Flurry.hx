@@ -7,64 +7,70 @@ import haxe.CallStack;
 
 class FlurryImpl
 {
-  public function new ()
+  static public function onStartSession(flurryKey : String)
   {
     initJNI();
-  }
-
-  public function onStartSession(flurryKey : String)
-  {
     _onStartSession(flurryKey);
     _setLogEnabled(true);
   }
 
-  public function onEndSession()
+  static public function onEndSession()
   {
+    initJNI();
     _onEndSession();
   }
 
-  public function setVersionName(versionName : String)
+  static public function setVersionName(versionName : String)
   {
+    initJNI();
     _setVersionName(versionName);
   }
 
-  public function setReportLocation(reportLocation : Bool)
+  static public function setReportLocation(reportLocation : Bool)
   {
+    initJNI();
     _setReportLocation(reportLocation);
   }
 
-  public function setLogEnabled(logEnabled : Bool)
+  static public function setLogEnabled(logEnabled : Bool)
   {
+    initJNI();
     _setLogEnabled(logEnabled);
   }
 
-  public function setLogLevel(logLevel : Int)
+  static public function setLogLevel(logLevel : Int)
   {
+    initJNI();
     _setLogLevel(logLevel);
   }
 
-  public function setContinueSessionMillis(millis : Int)
+  static public function setContinueSessionMillis(millis : Int)
   {
+    initJNI();
     _setContinueSessionMillis(millis);
   }
 
-  public function setLogEvents(logEvents : Bool)
+  static public function setLogEvents(logEvents : Bool)
   {
+    initJNI();
     _setLogEvents(logEvents);
   }
 
-  public function setUseHttps(useHttps : Bool)
+  static public function setUseHttps(useHttps : Bool)
   {
+    initJNI();
     _setUseHttps(useHttps);
   }
 
-  public function setCaptureUncaughtExceptions(isEnabled : Bool)
+  static public function setCaptureUncaughtExceptions(isEnabled : Bool)
   {
+    initJNI();
     _setCaptureUncaughtExceptions(isEnabled);
   }
 
-  public function logEvent(eventId : String, ?params : Dynamic = null, ?timed : Bool = false)
+  static public function logEvent(eventId : String, ?params : Dynamic = null, ?timed : Bool = false)
   {
+    initJNI();
     if(params != null)
     {
       var map = new JNIHashMap();
@@ -92,8 +98,9 @@ class FlurryImpl
     }
   }
 
-  public function endTimedEvent(eventId : String, ?params : Dynamic = null)
+  static public function endTimedEvent(eventId : String, ?params : Dynamic = null)
   {
+    initJNI();
     if(params != null)
     {
       var map = new JNIHashMap();
@@ -110,28 +117,33 @@ class FlurryImpl
     }
   }
 
-  public function onError(errorId : String, message : String, errorClass : String)
+  static public function onError(errorId : String, message : String, errorClass : String)
   {
+    initJNI();
     _onError(errorId, message, errorClass);
   }
 
-  public function onPageView()
+  static public function onPageView()
   {
+    initJNI();
     _onPageView();
   }
 
-  public function setAge(age : Int)
+  static public function setAge(age : Int)
   {
+    initJNI();
     _setAge(age);
   }
 
-  public function setGender(gender : Int)
+  static public function setGender(gender : Int)
   {
+    initJNI();
     _setGender(gender);
   }
 
-  public function setUserId(userId : String)
+  static public function setUserId(userId : String)
   {
+    initJNI();
     _setUserId(userId);
   }
 
@@ -282,77 +294,97 @@ typedef Flurry = FlurryImpl;
 
 class FlurryFallback
 {
-  public function new ()
+  static public function onStartSession(flurryKey : String)
   {
+    write("On start Flurry session");
     setLogEnabled(true);
   }
 
-  public function onStartSession(flurryKey : String)
+  static public function onEndSession()
   {
+    write("On end Flurry session");
   }
 
-  public function onEndSession()
+  static public function setVersionName(versionName : String)
   {
+    write(["setVersionName", versionName]);
   }
 
-  public function setVersionName(versionName : String)
+  static public function setReportLocation(reportLocation : Bool)
   {
+    write(["setReportLocation", reportLocation]);
   }
 
-  public function setReportLocation(reportLocation : Bool)
+  static public function setLogEnabled(logEnabled : Bool)
   {
+    write(["setLogEnabled", logEnabled]);
   }
 
-  public function setLogEnabled(logEnabled : Bool)
+  static public function setLogLevel(logLevel : Int)
   {
+    write(["setLogLevel", logLevel]);
   }
 
-  public function setLogLevel(logLevel : Int)
+  static public function setContinueSessionMillis(millis : Int)
   {
+    write(["setContinueSessionMillis", millis]);
   }
 
-  public function setContinueSessionMillis(millis : Int)
+  static public function setLogEvents(logEvents : Bool)
   {
+    write(["setLogEvents", logEvents]);
   }
 
-  public function setLogEvents(logEvents : Bool)
+  static public function setUseHttps(useHttps : Bool)
   {
+    write(["setUseHttps", useHttps]);
   }
 
-  public function setUseHttps(useHttps : Bool)
+  static public function setCaptureUncaughtExceptions(isEnabled : Bool)
   {
+    write(["setCaptureUncaughtExceptions", isEnabled]);
   }
 
-  public function setCaptureUncaughtExceptions(isEnabled : Bool)
+  static public function logEvent(eventId : String, ?params : Dynamic = null, ?timed : Bool = false)
   {
+    write(["logEvent", eventId, params, timed]);
   }
 
-  public function logEvent(eventId : String, ?params : Dynamic = null, ?timed : Bool = false)
+  static public function endTimedEvent(eventId : String, ?params : Dynamic = null)
   {
+    write(["endTimedEvent", eventId, params]);
   }
 
-  public function endTimedEvent(eventId : String, ?params : Dynamic = null)
+  static public function onError(errorId : String, message : String, errorClass : String)
   {
+    write(["onError", errorId, message, errorClass]);
   }
 
-  public function onError(errorId : String, message : String, errorClass : String)
+  static public function onPageView()
   {
+    write("onPageView");
   }
 
-  public function onPageView()
+  static public function setAge(age : Int)
   {
+    write(["setAge", age]);
   }
 
-  public function setAge(age : Int)
+  static public function setGender(gender : Int)
   {
+    write(["setGender", gender]);
   }
 
-  public function setGender(gender : Int)
+  static public function setUserId(userId : String)
   {
+    write(["setUserId", userId]);
   }
 
-  public function setUserId(userId : String)
+  static function write(m : Dynamic)
   {
+#if debug
+    trace("FLURRY: " + m);
+#end
   }
 
 }
