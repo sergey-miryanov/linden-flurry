@@ -11,7 +11,6 @@ class FlurryImpl
   {
     initJNI();
     _onStartSession(flurryKey);
-    _setLogEnabled(true);
   }
 
   static public function onEndSession()
@@ -297,7 +296,6 @@ class FlurryFallback
   static public function onStartSession(flurryKey : String)
   {
     write("On start Flurry session");
-    setLogEnabled(true);
   }
 
   static public function onEndSession()
