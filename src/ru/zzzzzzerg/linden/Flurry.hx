@@ -55,12 +55,6 @@ class FlurryImpl
     _setLogEvents(logEvents);
   }
 
-  static public function setUseHttps(useHttps : Bool)
-  {
-    initJNI();
-    _setUseHttps(useHttps);
-  }
-
   static public function setCaptureUncaughtExceptions(isEnabled : Bool)
   {
     initJNI();
@@ -213,11 +207,6 @@ class FlurryImpl
       _setLogEvents = getMethod("com/flurry/android/FlurryAgent", "setLogEvents", "(Z)V");
     }
 
-    if(_setUseHttps == null)
-    {
-      _setUseHttps = getMethod("com/flurry/android/FlurryAgent", "setUseHttps", "(Z)V");
-    }
-
     if(_setCaptureUncaughtExceptions == null)
     {
       _setCaptureUncaughtExceptions = getMethod("com/flurry/android/FlurryAgent", "setCaptureUncaughtExceptions", "(Z)V");
@@ -271,7 +260,6 @@ class FlurryImpl
   private static var _setLogLevel : Dynamic = null;
   private static var _setContinueSessionMillis : Dynamic = null;
   private static var _setLogEvents : Dynamic = null;
-  private static var _setUseHttps : Dynamic = null;
   private static var _setCaptureUncaughtExceptions : Dynamic = null;
   private static var _logEvent : Dynamic = null;
   private static var _logEventTimed : Dynamic = null;
