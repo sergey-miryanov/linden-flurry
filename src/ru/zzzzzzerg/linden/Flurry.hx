@@ -214,10 +214,10 @@ class FlurryImpl
 
     if(_logEvent == null)
     {
-      _logEvent = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;)V", true);
-      _logEventParams = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;Ljava/util/Map;)V", true);
-      _logEventParamsTimed = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;Ljava/util/Map;Z)V", true);
-      _logEventTimed = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;Z)V", true);
+      _logEvent = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;)Lcom/flurry/android/FlurryEventRecordStatus;", true);
+      _logEventParams = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;Ljava/util/Map;)Lcom/flurry/android/FlurryEventRecordStatus;", true);
+      _logEventParamsTimed = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;Ljava/util/Map;Z)Lcom/flurry/android/FlurryEventRecordStatus;", true);
+      _logEventTimed = getMethod("com/flurry/android/FlurryAgent", "logEvent", "(Ljava/lang/String;Z)Lcom/flurry/android/FlurryEventRecordStatus;", true);
     }
 
     if(_endTimedEvent == null)
