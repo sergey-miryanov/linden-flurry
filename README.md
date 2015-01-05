@@ -7,7 +7,7 @@ linden-flurry just proxies all calls from Haxe side to Java side to FlurryAgent.
 So if you have native Flurry experience you will be familiar with linden-flurry API.
 
 Main difference is that Haxe side no have access to onStart, onStop and other
-Android Activity callbacks. So you have to call Flurry.start as soon as possible
+Android Activity callbacks. So you have to call Flurry.onStartSession as soon as possible
 in your application.
 
 
@@ -45,7 +45,7 @@ Android SDK version. linden-flurry supports Android OS versions 14 and above.
 </project>
 ```
 
-2. Now you have to call Flurry.start(YOUR_FLURRY_API_KEY) in your application
+2. Now you have to call Flurry.onStartSession(YOUR_FLURRY_API_KEY) in your application
 as soon as possible. After start Flurry you can call all Flurry API methods.
 
 3. You also can stop Flurry by calling Flurry.stop. But take in account that
