@@ -1,0 +1,13 @@
+{
+    "name"         : "linden-flurry",
+    "url"          : "https://github.com/sergey-miryanov/linden-flurry",
+    "license"      : "MIT",
+    "tags"         : ["openfl", "extension", "flurry", "analytics", "android"],
+    "description"  : "linden-flurry is an Android extension for OpenFL for Flurry analytics service.",
+    "version"      : "1.1.0",
+    "releasenote"  : "Fix some Flurry 5.0.0 related bugs and add support of Android 10 API",
+    "contributors" : ["SergeyMiryanov"],
+    "dependencies" : {
+        "openfl"        : ""
+    }
+}
