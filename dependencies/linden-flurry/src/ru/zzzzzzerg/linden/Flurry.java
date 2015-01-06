@@ -17,13 +17,15 @@ import org.haxe.extension.Extension;
 public class Flurry extends Extension
 {
   private static boolean _started;
+  private static boolean _initialized;
 
-  private static String tag = "LindenFlurry";
+  private static String tag = "trace";
 
   public Flurry()
   {
     Log.d(tag, "Construct LindenFlurry");
     _started = false;
+    _initialized = false;
   }
 
   /**
@@ -42,6 +44,7 @@ public class Flurry extends Extension
    */
   public void onCreate(Bundle savedInstanceState)
   {
+    Log.d("trace", "LindenFlurry created");
   }
 
 
@@ -87,6 +90,13 @@ public class Flurry extends Extension
    */
   public void onStart()
   {
+    if(android.os.Build.VERSION.SDK_INT >= 10 && android.os.Build.VERSION.SDK_INT < 14)
+    {
+      if(_initialized)
+      {
+        FlurryAgent.onStartSession(mainContext);
+      }
+    }
   }
 
 
@@ -96,6 +106,13 @@ public class Flurry extends Extension
    */
   public void onStop()
   {
+    if(android.os.Build.VERSION.SDK_INT >= 10 && android.os.Build.VERSION.SDK_INT < 14)
+    {
+      if(_initialized)
+      {
+        FlurryAgent.onEndSession(mainContext);
+      }
+    }
   }
 
   public static void start(String flurryKey)
@@ -113,6 +130,7 @@ public class Flurry extends Extension
 
     FlurryAgent.onStartSession(mainContext);
 
+    _initialized = true;
     _started = true;
 
     Log.d(tag, "LindenFlurry started");

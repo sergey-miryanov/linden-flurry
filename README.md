@@ -15,7 +15,7 @@ in your application.
 
 1. linden-flurry extension properly integrate FlurryAgent to your application so
 you just have to include it in your project file. Also you have to specify minimum
-Android SDK version. linden-flurry supports Android OS versions 14 and above.
+Android SDK version. linden-flurry supports Android OS versions 10 and above.
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <project>
