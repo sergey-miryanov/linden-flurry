@@ -17,7 +17,13 @@ import ru.zzzzzzerg.linden.Flurry;
 
 class Main extends Sprite {
 
+#if android
   private static var FLURRY_KEY = "Y8MB3385SY839THTZ9XM";
+#elseif ios
+  private static var FLURRY_KEY = "YNBJ64QGF9DQCZGD8Z2M";
+#else
+  private static var FLURRY_KEY = "";
+#end
 
   public function new () {
 

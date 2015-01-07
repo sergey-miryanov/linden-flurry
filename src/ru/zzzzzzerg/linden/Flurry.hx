@@ -142,7 +142,7 @@ class FlurryImpl
 
   private static function getMethod(ns : String, name : String, sig : String, useArray : Bool = false) : Dynamic
   {
-    var m = JNI.createStaticMethod(ns, name, sig, useArray);
+    var m = JNI.createStaticMethod(ns, name, sig, useArray, true);
     if(m == null)
     {
       trace(["Can't find JNI method", ns, name, sig]);
@@ -276,6 +276,40 @@ class FlurryImpl
 }
 
 typedef Flurry = FlurryImpl;
+
+#elseif ios
+
+import cpp.Lib;
+
+class FlurryIOS
+{
+  static public function onStartSession(flurryKey : String)
+  {
+    linden_flurry_startSession(flurryKey);
+  }
+
+  static public function setCaptureUncaughtExceptions(enabled: Bool)
+  {
+    linden_flurry_setCrashReportingEnabled(enabled);
+  }
+
+  static public function logEvent(eventId : String, ?params : Dynamic = null, ?timed : Bool = false)
+  {
+    trace(["logEvent", eventId, params, timed]);
+  }
+
+  static public function endTimedEvent(eventId : String, ?params : Dynamic = null)
+  {
+    trace(["endTimedEvent", eventId, params]);
+  }
+
+
+
+  private static var linden_flurry_startSession = Lib.load("linden_flurry", "startSession", 1);
+  private static var linden_flurry_setCrashReportingEnabled = Lib.load("linden_flurry", "setCrashReportingEnabled", 1);
+}
+
+typedef Flurry = FlurryIOS;
 
 #else
 

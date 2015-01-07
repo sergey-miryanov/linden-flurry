@@ -9,5 +9,11 @@
     <android extension="ru.zzzzzzerg.linden.Flurry" />
 
   </section>
+
+  <section if="ios">
+    <ndll name="linden_flurry" if="ios" />
+    <dependency name="SystemConfiguration.framework" if="ios" />
+    <dependency name="Security.framework" if="ios"/>
+  </section>
 </extension>
 
