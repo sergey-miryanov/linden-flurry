@@ -5,6 +5,11 @@ namespace LindenFlurry
 {
   void setCrashReportingEnabled(bool enabled);
   void startSession(const char* key);
+
+  void logEvent(const char* eventId, bool timed);
+  void logEvent(const char* eventId, int keysCount,
+      const char** keys, const char** values,
+      bool timed);
 }
 
 #endif
