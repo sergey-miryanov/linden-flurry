@@ -1,9 +1,9 @@
 # linden-flurry
 
-Android extension for OpenFL for Flurry
+OpenFL extension for Flurry
 
 ## Getting started
-linden-flurry just proxies all calls from Haxe side to Java side to FlurryAgent.
+linden-flurry just proxies all calls from Haxe side to native side (Java or iOS) to FlurryAgent.
 So if you have native Flurry experience you will be familiar with linden-flurry API.
 
 Main difference is that Haxe side no have access to onStart, onStop and other
