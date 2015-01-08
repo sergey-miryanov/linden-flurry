@@ -13,6 +13,15 @@ namespace LindenFlurry
   void endTimedEvent(const char* eventId);
   void endTimedEvent(const char* eventId, int keysCount,
       const char** keys, const char** values);
+
+  void setUserId(const char* userId);
+  void setGender(const char* gender);
+  void setAge(int age);
+  void logPageView();
+  void setAppVersion(const char* appVersion);
+  void setEventLoggingEnabled(bool enabled);
+  void setLogLevel(int logLevel);
+  void setSessionContinueSeconds(int seconds);
 }
 
 #endif

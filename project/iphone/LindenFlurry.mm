@@ -113,4 +113,50 @@ namespace LindenFlurry
     [paramsDict release];
     [strEventId release];
   }
+
+  void setUserId(const char* userId)
+  {
+    NSString* strUserId = [[NSString alloc] initWithUTF8String:userId];
+    [Flurry setUserID:strUserId];
+    [strUserId release];
+  }
+
+  void setGender(const char* gender)
+  {
+    NSString* strGender = [[NSString alloc] initWithUTF8String:gender];
+    [Flurry setGender:strGender];
+    [strGender release];
+  }
+
+  void setAge(int age)
+  {
+    [Flurry setAge: age];
+  }
+
+  void logPageView()
+  {
+    [Flurry logPageView];
+  }
+
+  void setAppVersion(const char* appVersion)
+  {
+    NSString* strAppVersion = [[NSString alloc] initWithUTF8String:appVersion];
+    [Flurry setAppVersion:strAppVersion];
+    [strAppVersion release];
+  }
+
+  void setEventLoggingEnabled(bool enabled)
+  {
+    [Flurry setEventLoggingEnabled: enabled?YES:NO];
+  }
+
+  void setLogLevel(int logLevel)
+  {
+    [Flurry setLogLevel:(FlurryLogLevel)logLevel];
+  }
+
+  void setSessionContinueSeconds(int seconds)
+  {
+    [Flurry setSessionContinueSeconds:seconds];
+  }
 }

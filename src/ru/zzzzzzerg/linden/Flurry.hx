@@ -288,6 +288,12 @@ class FlurryIOS
     linden_flurry_startSession(flurryKey);
   }
 
+  static public function onEndSession()
+  {
+    // no iOS version of onEndSession
+    write("End Flurry session");
+  }
+
   static public function setCaptureUncaughtExceptions(enabled: Bool)
   {
     linden_flurry_setCrashReportingEnabled(enabled);
@@ -331,12 +337,78 @@ class FlurryIOS
     }
   }
 
+  static public function setVersionName(versionName : String)
+  {
+    linden_flurry_setAppVersion(versionName);
+  }
+
+  // FIXME: will be removed
+  static public function setReportLocation(reportLocation : Bool)
+  {
+    write(["setReportLocation", reportLocation]);
+  }
+
+  static public function setLogEnabled(logEnabled : Bool)
+  {
+    linden_flurry_setEventLoggingEnabled(logEnabled);
+  }
+
+  static public function setLogLevel(logLevel : Int)
+  {
+    linden_flurry_setLogLevel(logLevel);
+  }
+
+  // FIXME: will be removed
+  static public function onError(errorId : String, message : String, errorClass : String)
+  {
+    write(["onError", errorId, message, errorClass]);
+  }
+
+  static public function onPageView()
+  {
+    linden_flurry_logPageView();
+  }
+
+  static public function setAge(age : Int)
+  {
+    linden_flurry_setAge(age);
+  }
+
+  static public function setGender(gender : Int)
+  {
+    linden_flurry_setGender(gender == 0 ? "f" : "m");
+  }
+
+  static public function setUserId(userId : String)
+  {
+    linden_flurry_setUserId(userId);
+  }
+
+  static public function setContinueSessionMillis(millis : Int)
+  {
+    linden_flurry_setSessionContinueSeconds(millis / 1000);
+  }
+
+  static function write(m : Dynamic)
+  {
+#if debug
+    trace("FLURRY(iOS): " + m);
+#end
+  }
 
 
   private static var linden_flurry_startSession = Lib.load("linden_flurry", "startSession", 1);
   private static var linden_flurry_setCrashReportingEnabled = Lib.load("linden_flurry", "setCrashReportingEnabled", 1);
   private static var linden_flurry_logEvent = Lib.load("linden_flurry", "logEvent", 4);
   private static var linden_flurry_endTimedEvent = Lib.load("linden_flurry", "endTimedEvent", 3);
+  private static var linden_flurry_setUserId = Lib.load("linden_flurry", "setUserId", 1);
+  private static var linden_flurry_setGender = Lib.load("linden_flurry", "setGender", 1);
+  private static var linden_flurry_setAge = Lib.load("linden_flurry", "setAge", 1);
+  private static var linden_flurry_logPageView = Lib.load("linden_flurry", "logPageView", 0);
+  private static var linden_flurry_setAppVersion = Lib.load("linden_flurry", "setAppVersion", 1);
+  private static var linden_flurry_setEventLoggingEnabled = Lib.load("linden_flurry", "setEventLoggingEnabled", 1);
+  private static var linden_flurry_setLogLevel = Lib.load("linden_flurry", "setLogLevel", 1);
+  private static var linden_flurry_setSessionContinueSeconds = Lib.load("linden_flurry", "setSessionContinueSeconds", 1);
 }
 
 typedef Flurry = FlurryIOS;
