@@ -10,6 +10,9 @@ namespace LindenFlurry
   void logEvent(const char* eventId, int keysCount,
       const char** keys, const char** values,
       bool timed);
+  void endTimedEvent(const char* eventId);
+  void endTimedEvent(const char* eventId, int keysCount,
+      const char** keys, const char** values);
 }
 
 #endif

@@ -71,4 +71,46 @@ namespace LindenFlurry
     [paramsDict release];
     [strEventId release];
   }
+
+  void endTimedEvent(const char* eventId)
+  {
+    NSString* strEventId = [[NSString alloc] initWithUTF8String:eventId];
+    [Flurry endTimedEvent:strEventId withParameters:nil];
+
+    [strEventId release];
+  }
+
+  void endTimedEvent(const char* eventId, int keysCount, const char** keys, const char** values)
+  {
+    NSString* strEventId = [[NSString alloc] initWithUTF8String:eventId];
+    NSMutableArray* nsKeys = [[NSMutableArray alloc] init];
+    NSMutableArray* nsValues = [[NSMutableArray alloc] init];
+
+    for(int i = 0; i < keysCount; ++i)
+    {
+      NSString* key = [[NSString alloc] initWithUTF8String:keys[i]];
+      NSString* value = [[NSString alloc] initWithUTF8String:values[i]];
+
+      [nsKeys addObject: key];
+      [nsValues addObject: value];
+    }
+
+    NSDictionary* paramsDict = [[NSDictionary alloc] initWithObjects: nsValues forKeys: nsKeys];
+
+    [Flurry endTimedEvent:strEventId withParameters: paramsDict];
+
+    for(int i = 0; i < keysCount; ++i)
+    {
+      NSString* key = nsKeys[i];
+      NSString* value = nsValues[i];
+
+      [key release];
+      [value release];
+    }
+
+    [nsKeys release];
+    [nsValues release];
+    [paramsDict release];
+    [strEventId release];
+  }
 }

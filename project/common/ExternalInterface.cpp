@@ -86,6 +86,53 @@ static value linden_flurry_logEvent(value eventId, value keys, value values, val
 }
 DEFINE_PRIM(linden_flurry_logEvent, 4);
 
+static value linden_flurry_endTimedEvent(value eventId, value keys, value values)
+{
+#ifdef IPHONE
+  if(val_is_null(keys) || val_is_null(values))
+  {
+    if(val_is_string(eventId))
+    {
+      endTimedEvent(val_get_string(eventId));
+    }
+  }
+  else
+  {
+    int keysSize = val_array_size(keys);
+    int valuesSize = val_array_size(values);
+    if(keysSize == valuesSize)
+    {
+      const char** strKeys = new const char*[keysSize];
+      const char** strValues = new const char*[keysSize];
+
+      for(int i = 0; i < keysSize; ++i)
+      {
+        value key = val_array_i(keys, i);
+        value value = val_array_i(values, i);
+
+        if(val_is_string(key) && val_is_string(value))
+        {
+          strKeys[i] = val_get_string(key);
+          strValues[i] = val_get_string(value);
+        }
+      }
+
+      if(val_is_string(eventId))
+      {
+        endTimedEvent(val_get_string(eventId), keysSize, strKeys, strValues);
+      }
+
+      delete[] strValues;
+      delete[] strKeys;
+    }
+  }
+  
+#endif
+
+  return alloc_null();
+}
+DEFINE_PRIM(linden_flurry_endTimedEvent, 3);
+
 extern "C" void linden_flurry_main()
 {
   val_int(0); // Fix Neko init

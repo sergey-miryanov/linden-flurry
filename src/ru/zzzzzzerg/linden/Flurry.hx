@@ -314,7 +314,21 @@ class FlurryIOS
 
   static public function endTimedEvent(eventId : String, ?params : Dynamic = null)
   {
-    trace(["endTimedEvent", eventId, params]);
+    if(params != null)
+    {
+      var keys = Reflect.fields(params);
+      var values = new Array<String>();
+      for(key in keys)
+      {
+        values.push(Std.string(Reflect.field(params, key)));
+      }
+
+      linden_flurry_endTimedEvent(eventId, keys, values);
+    }
+    else
+    {
+      linden_flurry_endTimedEvent(eventId, null, null);
+    }
   }
 
 
@@ -322,6 +336,7 @@ class FlurryIOS
   private static var linden_flurry_startSession = Lib.load("linden_flurry", "startSession", 1);
   private static var linden_flurry_setCrashReportingEnabled = Lib.load("linden_flurry", "setCrashReportingEnabled", 1);
   private static var linden_flurry_logEvent = Lib.load("linden_flurry", "logEvent", 4);
+  private static var linden_flurry_endTimedEvent = Lib.load("linden_flurry", "endTimedEvent", 3);
 }
 
 typedef Flurry = FlurryIOS;
