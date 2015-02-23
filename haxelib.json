@@ -2,12 +2,13 @@
     "name"         : "linden-flurry",
     "url"          : "https://github.com/sergey-miryanov/linden-flurry",
     "license"      : "MIT",
-    "tags"         : ["openfl", "extension", "flurry", "analytics", "android"],
-    "description"  : "linden-flurry is an Android extension for OpenFL for Flurry analytics service.",
-    "version"      : "1.1.0",
-    "releasenote"  : "Fix some Flurry 5.0.0 related bugs and add support of Android 10 API",
+    "tags"         : ["openfl", "extension", "flurry", "analytics", "android", "ios"],
+    "description"  : "linden-flurry is an Android and iOS extension for OpenFL for Flurry analytics service.",
+    "version"      : "1.2.0",
+    "releasenote"  : "Add iOS support and update Flurry jar file to 5.1.0 (please note that iOS support doesn't work for hxcpp 3.1.39)",
     "contributors" : ["SergeyMiryanov"],
     "dependencies" : {
-        "openfl"        : ""
+        "hxcpp"        : "",
+        "lime"         : ""
     }
 }
