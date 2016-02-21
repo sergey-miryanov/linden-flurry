@@ -68,4 +68,8 @@ You can log timed event by calling ``Flurry.logEvent(eventId:String, params:Dyna
 Use have to use ``Flurry.endTimedEvent(eventId:String)`` or ``Flurry.endTimedEvent(eventId:String, params:Dynamic)``
 to end timed event.
 
+##Troubleshooting
+1. iOS error - /ndll/IPhone/liblinden_flurry.iphoneos.a does not exist.
+You have to build .a files by moving to linden-flurry/project and type 'make'
+
 About all other Flurry API please refer [official Flurry documentation](https://developer.yahoo.com/flurry/docs/analytics/gettingstarted/android/).
